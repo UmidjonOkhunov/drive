@@ -1,19 +1,18 @@
 import React from "react";
-import {
-  createStyles,
-  makeStyles,
-  Theme,
-  withStyles,
-} from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Menu, { MenuProps } from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import DraftsIcon from "@material-ui/icons/Drafts";
-import SendIcon from "@material-ui/icons/Send";
+import { ListItemText, Divider } from "@material-ui/core";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import CreateNewFolderOutlinedIcon from "@material-ui/icons/CreateNewFolderOutlined";
+import InsertDriveFileOutlinedIcon from "@material-ui/icons/InsertDriveFileOutlined";
+import FolderOpenOutlinedIcon from "@material-ui/icons/FolderOpenOutlined";
+import DescriptionOutlinedIcon from "@material-ui/icons/DescriptionOutlined";
+import ListAltOutlinedIcon from "@material-ui/icons/ListAltOutlined";
+import SlideshowOutlinedIcon from "@material-ui/icons/SlideshowOutlined";
+import FormatListBulletedOutlinedIcon from "@material-ui/icons/FormatListBulletedOutlined";
 
 const StyledMenu = withStyles({
   paper: {
@@ -54,7 +53,7 @@ const DriveButton = withStyles({
   },
 })(Button);
 
-export default function DropMenu() {
+const DropMenu: React.FC = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -83,23 +82,54 @@ export default function DropMenu() {
       >
         <MenuItem>
           <ListItemIcon>
-            <SendIcon fontSize="small" />
+            <CreateNewFolderOutlinedIcon fontSize="small" />
           </ListItemIcon>
-          <ListItemText primary="Sent mail" />
+          <ListItemText primary="New folder" />
+        </MenuItem>
+        <Divider />
+        <MenuItem>
+          <ListItemIcon>
+            <InsertDriveFileOutlinedIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText primary="Upload file" />
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
-            <DraftsIcon fontSize="small" />
+            <FolderOpenOutlinedIcon fontSize="small" />
           </ListItemIcon>
-          <ListItemText primary="Drafts" />
+          <ListItemText primary="Upload folder" />
+        </MenuItem>
+        <Divider />
+        <MenuItem>
+          <ListItemIcon>
+            <DescriptionOutlinedIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText primary="Google Docs" />
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
-            <InboxIcon fontSize="small" />
+            <ListAltOutlinedIcon fontSize="small" />
           </ListItemIcon>
-          <ListItemText primary="Inbox" />
+          <ListItemText primary="Google Sheets" />
+        </MenuItem>
+        <MenuItem>
+          <ListItemIcon>
+            <SlideshowOutlinedIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText primary="Google Slides" />
+        </MenuItem>
+        <MenuItem>
+          <ListItemIcon>
+            <FormatListBulletedOutlinedIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText primary="Google Forms" />
+        </MenuItem>
+        <MenuItem>
+          <ListItemText primary="More" />
         </MenuItem>
       </StyledMenu>
     </div>
   );
-}
+};
+
+export default DropMenu;

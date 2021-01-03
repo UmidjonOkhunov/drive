@@ -10,21 +10,11 @@ import {
   Theme,
 } from "@material-ui/core";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import FolderIcon from "@material-ui/icons/Folder";
-import GridList from "@material-ui/core/GridList";
-import GridListTile from "@material-ui/core/GridListTile";
-import GridListTileBar from "@material-ui/core/GridListTileBar";
-import ListSubheader from "@material-ui/core/ListSubheader";
-import IconButton from "@material-ui/core/IconButton";
-import InfoIcon from "@material-ui/icons/Info";
 import fileData from "../../data/files";
 import { File } from "../../types";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     // flexGrow: 1,
     display: "flex",
@@ -50,18 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// const styles = (theme:Theme) => ({
-//   root: {
-//     backgroundColor: 'blue',
-//     // Match [md, ∞)
-//     //       [960px, ∞)
-//     [theme.breakpoints.up('md')]: {
-//       backgroundColor: 'red',
-//     },
-//   },
-// });
-
-export default function InteractiveList() {
+const InteractiveList: React.FC = () => {
   const classes = useStyles();
 
   return (
@@ -92,4 +71,6 @@ export default function InteractiveList() {
       </div>
     </Container>
   );
-}
+};
+
+export default InteractiveList;

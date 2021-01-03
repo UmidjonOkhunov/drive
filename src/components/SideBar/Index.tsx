@@ -16,6 +16,7 @@ import {
   withStyles,
 } from "@material-ui/core";
 import { ReactComponent as DriveIcon } from "./my-drive-outline.svg";
+import ArrowRightIcon from "@material-ui/icons/ArrowRight";
 import {
   PeopleOutlined,
   AccessTimeOutlined,
@@ -52,6 +53,7 @@ const useStyles = makeStyles((theme: Theme) =>
       color: "#1A73E8",
     },
     currentListItem: {
+      paddingLeft: 2,
       paddingTop: 2,
       paddingBottom: 2,
       borderTopRightRadius: 20,
@@ -62,7 +64,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const BorderLinearProgress = withStyles((theme: Theme) =>
+const BorderLinearProgress = withStyles(() =>
   createStyles({
     colorPrimary: {
       backgroundColor: "#E0E0E0",
@@ -92,10 +94,8 @@ function LinearProgressWithLabel(
   );
 }
 
-export default function Index() {
+const Index: React.FC = () => {
   const classes = useStyles();
-  const temp =
-    "https://upload.wikimedia.org/wikipedia/commons/e/e8/Google_Drive_logo.svg";
   const drawer = (
     <div>
       <div className={classes.toolbar} />
@@ -106,10 +106,14 @@ export default function Index() {
         </ListItem>
         <ListItem className={classes.currentListItem}>
           <ListItemIcon>
-            {/* <img src={MyDriveIcon} alt="Drive" width="45" /> */}
-            <SvgIcon component={DriveIcon} viewBox="0 0 600 476.6" />
+            <ArrowRightIcon />
+            <SvgIcon
+              component={DriveIcon}
+              viewBox="0 0 600 476.6"
+              style={{ color: "#1967DA" }}
+            />
           </ListItemIcon>
-          <ListItemText inset primary="My Drive" />
+          <ListItemText primary="My Drive" style={{ paddingLeft: 20 }} />
         </ListItem>
         <ListItem button className={classes.listItem}>
           <ListItemIcon>
@@ -175,4 +179,6 @@ export default function Index() {
       </nav>
     </div>
   );
-}
+};
+
+export default Index;

@@ -4,16 +4,9 @@ import QuickAccess from "./QuickAccess";
 import Files from "./Files";
 import Folders from "./Folders";
 
-import {
-  AppBar,
-  createStyles,
-  Divider,
-  makeStyles,
-  Theme,
-  Toolbar,
-} from "@material-ui/core";
+import { createStyles, Divider, makeStyles } from "@material-ui/core";
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       display: "flex",
@@ -27,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const Body = () => {
+const Body: React.FC = () => {
   const classes = useStyles();
   const [width, setWidth] = useState(1900);
 

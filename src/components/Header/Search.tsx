@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function CustomizedInputBase() {
+const CustomizedInputBase: React.FC = () => {
   const classes = useStyles();
   const [focused, setFocused] = useState(false);
 
@@ -84,4 +84,6 @@ export default function CustomizedInputBase() {
       </Tooltip>
     </Paper>
   );
-}
+};
+
+export default CustomizedInputBase;

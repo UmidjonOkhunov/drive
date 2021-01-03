@@ -6,7 +6,6 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
 import FolderIcon from "@material-ui/icons/Folder";
-import { border } from "@material-ui/system";
 import folderData from "../../data/folders";
 import { Folder } from "../../types";
 
@@ -39,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function InteractiveList() {
+const InteractiveList: React.FC = () => {
   const classes = useStyles();
 
   return (
@@ -61,4 +60,6 @@ export default function InteractiveList() {
       </div>
     </Container>
   );
-}
+};
+
+export default InteractiveList;

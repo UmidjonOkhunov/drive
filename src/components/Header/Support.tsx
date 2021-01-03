@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: "flex",
-      // float: "right",
     },
     paper: {
       marginRight: theme.spacing(2),
@@ -25,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function DropMenu({ icon }: any) {
+const DropMenu: React.FC = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
@@ -54,8 +53,8 @@ export default function DropMenu({ icon }: any) {
 
   const prevOpen = React.useRef(open);
   React.useEffect(() => {
-    if (prevOpen.current === true && open === false) {
-      anchorRef.current!.focus();
+    if (prevOpen.current === true && open === false && anchorRef.current) {
+      anchorRef.current.focus();
     }
 
     prevOpen.current = open;
@@ -63,7 +62,7 @@ export default function DropMenu({ icon }: any) {
 
   return (
     <div className={classes.root}>
-      <Tooltip title="Settings">
+      <Tooltip title="Support">
         <IconButton
           ref={anchorRef}
           aria-controls={open ? "menu-list-grow" : undefined}
@@ -110,4 +109,6 @@ export default function DropMenu({ icon }: any) {
       </Popper>
     </div>
   );
-}
+};
+
+export default DropMenu;

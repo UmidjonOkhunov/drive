@@ -5,7 +5,7 @@ import Header from "./components/Header/Index";
 import SideBar from "./components/SideBar/Index";
 import { Container } from "@material-ui/core";
 
-const Welcome = () => (
+const Welcome: React.FC = () => (
   <Container>
     <Header />
     <SideBar />

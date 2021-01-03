@@ -43,10 +43,12 @@ function HomeIcon() {
   );
 }
 
-export default function InteractiveList() {
+const InteractiveList: React.FC = () => {
   return (
     <Grid>
       <HomeIcon />
     </Grid>
   );
-}
+};
+
+export default InteractiveList;

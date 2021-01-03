@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   card: {},
 }));
 
-const QuickAccess = () => {
+const QuickAccess: React.FC = () => {
   const classes = useStyles();
   return (
     <Container className={classes.root} maxWidth="xl">
