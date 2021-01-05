@@ -1,4 +1,9 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  accountOpenChange,
+  toggleAccountOpen,
+} from "../../reducers/openReducer";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -12,7 +17,7 @@ import {
   MenuList,
   Avatar,
 } from "@material-ui/core";
-
+import { openState } from "../../types";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -26,12 +31,14 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const DropMenu: React.FC = () => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const dispatch = useDispatch();
+  // const [open, setOpen] = React.useState(false);
+  const open = useSelector((state: { open: openState }) => state.open.account);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
 
-  const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
-  };
+  // const handleToggle = () => {
+  //   setOpen((prevOpen) => !prevOpen);
+  // };
 
   const handleClose = (event: React.MouseEvent<EventTarget>) => {
     if (
@@ -41,13 +48,14 @@ const DropMenu: React.FC = () => {
       return;
     }
 
-    setOpen(false);
+    // setOpen(false);
+    dispatch(accountOpenChange(false));
   };
 
   function handleListKeyDown(event: React.KeyboardEvent) {
     if (event.key === "Tab") {
       event.preventDefault();
-      setOpen(false);
+      dispatch(accountOpenChange(false));
     }
   }
 
@@ -67,7 +75,7 @@ const DropMenu: React.FC = () => {
           ref={anchorRef}
           aria-controls={open ? "menu-list-grow" : undefined}
           aria-haspopup="true"
-          onClick={handleToggle}
+          onClick={() => dispatch(toggleAccountOpen())}
         >
           <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
         </IconButton>

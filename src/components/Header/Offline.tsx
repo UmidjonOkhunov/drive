@@ -14,6 +14,12 @@ import {
   Switch,
   Tooltip,
 } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  offlineOpenChange,
+  toggleOfflineOpen,
+} from "../../reducers/openReducer";
+import { openState } from "../../types";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -29,11 +35,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Offline: React.FC = () => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const dispatch = useDispatch();
+  const open = useSelector((state: { open: openState }) => state.open.offline);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
 
   const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
+    dispatch(toggleOfflineOpen());
   };
 
   const handleClose = (event: React.MouseEvent<EventTarget>) => {
@@ -44,13 +51,13 @@ const Offline: React.FC = () => {
       return;
     }
 
-    setOpen(false);
+    dispatch(offlineOpenChange(false));
   };
 
   function handleListKeyDown(event: React.KeyboardEvent) {
     if (event.key === "Tab") {
       event.preventDefault();
-      setOpen(false);
+      dispatch(offlineOpenChange(false));
     }
   }
 

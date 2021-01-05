@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     toolbar: theme.mixins.toolbar,
     drawerPaper: {
-      width: 240,
+      width: 220,
       border: 0,
     },
     listItem: {
@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme: Theme) =>
       borderBottomRightRadius: 20,
     },
     buyStorage: {
-      marginLeft: 55,
+      marginLeft: 40,
       textTransform: "none",
       color: "#1A73E8",
     },
@@ -60,6 +60,9 @@ const useStyles = makeStyles((theme: Theme) =>
       borderBottomRightRadius: 20,
       backgroundColor: "#E8F0FE",
       color: "#1967DA",
+    },
+    text: {
+      marginLeft: -15,
     },
   })
 );
@@ -110,34 +113,34 @@ const Index: React.FC = () => {
             <SvgIcon
               component={DriveIcon}
               viewBox="0 0 600 476.6"
-              style={{ color: "#1967DA" }}
+              style={{ color: "#1967DA", fontSize: 25 }}
             />
           </ListItemIcon>
-          <ListItemText primary="My Drive" style={{ paddingLeft: 20 }} />
+          <ListItemText primary="My Drive" style={{ paddingLeft: 7 }} />
         </ListItem>
         <ListItem button className={classes.listItem}>
           <ListItemIcon>
             <PeopleOutlined />
           </ListItemIcon>
-          <ListItemText primary="Shared with me" />
+          <ListItemText primary="Shared with me" className={classes.text} />
         </ListItem>
         <ListItem button className={classes.listItem}>
           <ListItemIcon>
             <AccessTimeOutlined />
           </ListItemIcon>
-          <ListItemText primary="Recent" />
+          <ListItemText primary="Recent" className={classes.text} />
         </ListItem>
         <ListItem button className={classes.listItem}>
           <ListItemIcon>
             <StarBorderOutlined />
           </ListItemIcon>
-          <ListItemText primary="Starred" />
+          <ListItemText primary="Starred" className={classes.text} />
         </ListItem>
         <ListItem button className={classes.listItem}>
           <ListItemIcon>
             <DeleteOutlined />
           </ListItemIcon>
-          <ListItemText primary="Bin" />
+          <ListItemText primary="Bin" className={classes.text} />
         </ListItem>
       </List>
       <Divider />
@@ -146,12 +149,13 @@ const Index: React.FC = () => {
           <ListItemIcon>
             <StorageOutlined />
           </ListItemIcon>
-          <ListItemText primary={"Storage"} />
+          <ListItemText primary="Storage" className={classes.text} />
         </ListItem>
         <ListItem className={classes.listItem}>
           <ListItemText
             inset
             primary={<LinearProgressWithLabel value={(6.7 / 15) * 100} />}
+            className={classes.text}
           />
         </ListItem>
         <ListItem>

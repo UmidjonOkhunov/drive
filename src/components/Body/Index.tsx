@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Container from "@material-ui/core/Container";
 import QuickAccess from "./QuickAccess";
 import Files from "./Files";
 import Folders from "./Folders";
-
 import { createStyles, Divider, makeStyles } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import { bodyWidthChange } from "../../reducers/bodyWidthReducer";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -22,11 +23,12 @@ const useStyles = makeStyles(() =>
 
 const Body: React.FC = () => {
   const classes = useStyles();
-  const [width, setWidth] = useState(1900);
+  const dispatch = useDispatch();
+  const width = useSelector((state: { width: number }) => state.width);
 
   useEffect(() => {
     function handleResize() {
-      setWidth(window.innerWidth);
+      dispatch(bodyWidthChange(window.innerWidth));
     }
 
     window.addEventListener("resize", handleResize);

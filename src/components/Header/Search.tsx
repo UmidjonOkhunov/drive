@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   makeStyles,
   Theme,
@@ -11,6 +11,8 @@ import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import { Tooltip } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import { focusChange } from "../../reducers/focusReducer";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -48,10 +50,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 );
-
 const CustomizedInputBase: React.FC = () => {
   const classes = useStyles();
-  const [focused, setFocused] = useState(false);
+  const dispatch = useDispatch();
+  const focused = useSelector((state: { focus: boolean }) => state.focus);
 
   return (
     <Paper
@@ -71,8 +73,8 @@ const CustomizedInputBase: React.FC = () => {
 
       <InputBase
         className={classes.input}
-        onFocus={() => setFocused(true)}
-        onBlur={() => setFocused(false)}
+        onFocus={() => dispatch(focusChange(true))}
+        onBlur={() => dispatch(focusChange(false))}
         placeholder="Search in Drive"
         inputProps={{ "aria-label": "search google drive" }}
       />

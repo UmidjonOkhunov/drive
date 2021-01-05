@@ -12,6 +12,9 @@ import {
   ClickAwayListener,
   MenuList,
 } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import { googleOpenChange, toggleGoogleOpen } from "../../reducers/openReducer";
+import { openState } from "../../types";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,11 +30,13 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const DropMenu: React.FC = () => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const dispatch = useDispatch();
+  const open = useSelector((state: { open: openState }) => state.open.google);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
 
   const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
+    // setOpen((prevOpen) => !prevOpen);
+    dispatch(toggleGoogleOpen());
   };
 
   const handleClose = (event: React.MouseEvent<EventTarget>) => {
@@ -42,13 +47,13 @@ const DropMenu: React.FC = () => {
       return;
     }
 
-    setOpen(false);
+    dispatch(googleOpenChange(false));
   };
 
   function handleListKeyDown(event: React.KeyboardEvent) {
     if (event.key === "Tab") {
       event.preventDefault();
-      setOpen(false);
+      dispatch(googleOpenChange(false));
     }
   }
 

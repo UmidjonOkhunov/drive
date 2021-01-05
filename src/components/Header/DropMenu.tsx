@@ -13,6 +13,9 @@ import DescriptionOutlinedIcon from "@material-ui/icons/DescriptionOutlined";
 import ListAltOutlinedIcon from "@material-ui/icons/ListAltOutlined";
 import SlideshowOutlinedIcon from "@material-ui/icons/SlideshowOutlined";
 import FormatListBulletedOutlinedIcon from "@material-ui/icons/FormatListBulletedOutlined";
+import { useDispatch, useSelector } from "react-redux";
+import { anchorChange } from "../../reducers/anchorReducer";
+import { anchor } from "../../types";
 
 const StyledMenu = withStyles({
   paper: {
@@ -54,14 +57,18 @@ const DriveButton = withStyles({
 })(Button);
 
 const DropMenu: React.FC = () => {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const dispatch = useDispatch();
+  const anchorEl = useSelector((state: { anchor: anchor }) => state.anchor);
+  {
+    /* const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null); */
+  }
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
+    dispatch(anchorChange(event.currentTarget));
   };
 
   const handleClose = () => {
-    setAnchorEl(null);
+    dispatch(anchorChange(null));
   };
 
   return (
